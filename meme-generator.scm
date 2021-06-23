@@ -1,7 +1,7 @@
 (script-fu-register
  "script-fu-meme-generator"
- _"meme text"
- _"generate meme text :o"
+ _"Meme Text"
+ _"Generate Meme Text :o"
  "Eduardo Vazquez (hao)"
  "Public Domain"
  "2015-09-18"
@@ -58,10 +58,10 @@
 
      (gimp-image-merge-visible-layers img 1)
      (gimp-layer-unhide-all img)
-	 (gimp-selection-none img)
+	   (gimp-selection-none img)
 	 
      (gimp-image-undo-group-end img)
-	 (gimp-displays-flush)))
+	   (gimp-displays-flush)))
 
 ;; Debug
 ;;(script-fu-meme-generator (gimp-image-latest) "Test" 500)

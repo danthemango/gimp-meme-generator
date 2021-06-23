@@ -12,4 +12,4 @@ Move the .scm file to a script path, then click:
 Filters -> Script-Fu -> Refresh Scripts
 
 The script should now be executable under:
-File -> Create -> Text -> Generate Meme
+File -> Create -> Text -> Meme Text
