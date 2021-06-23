@@ -1,13 +1,15 @@
 # gimp-meme-generator
-Genera un meme en GIMP
+This script generates white text with a block border,
+a commonly used text format in meme templates.
 
-Mover meme-generator.scm a carpeta de scripts.
+![Example Image](example.png)
 
-En Arch Linux es:
-`~/.gimp-2.8/scripts/`
+## installation
+To find the script directory paths, open Gimp and go to:
+Edit -> Preferences -> Folders -> Scripts
 
-![alt text](https://www.anony.ws/i/2015/08/23/menu.png "Menu")
+Move the .scm file to a script path, then click:
+Filters -> Script-Fu -> Refresh Scripts
 
-![alt text](https://www.anony.ws/i/2015/08/23/crear.png "Menu")
-
-![alt text](https://www.anony.ws/i/2015/08/23/tldr.png "Menu")
+The script should now be executable under:
+File -> Create -> Text -> Generate Meme

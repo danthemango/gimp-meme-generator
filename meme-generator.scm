@@ -1,7 +1,7 @@
 (script-fu-register
  "script-fu-meme-generator"
- _"_Generar Meme"
- _"Genera un meme :o"
+ _"meme text"
+ _"generate meme text :o"
  "Eduardo Vazquez (hao)"
  "Public Domain"
  "2015-09-18"
@@ -34,12 +34,8 @@
   (let ((layers (vector->list (cadr (gimp-image-get-layers from-image)))))
     (map (lambda (layer) (gimp-layer-set-visible layer 1)) layers)))
 
-(define (with-undo-disabled in-image do-this)
-  (gimp-image-undo-disable in-image)
-  `(map (lambda (x) (x)) ,@do-this)
-  (gimp-image-undo-enable in-image))
-
 (define (script-fu-meme-generator img text size)
+  (gimp-image-undo-group-start img)
   (gimp-layer-hide-all img)
   (let* ((font "Impact Condensed")
       (logo-layer (car (gimp-text-fontname img -1 0 0 text 10 TRUE size PIXELS font)))
@@ -47,8 +43,6 @@
       (height (car (gimp-drawable-height logo-layer)))
       (outline-layer (car (gimp-layer-new img width height RGBA-IMAGE text 100 NORMAL-MODE))))
 
-    (with-undo-disabled
-     img
      (gimp-selection-none img)
      (script-fu-util-image-add-layers img outline-layer)
 
@@ -63,8 +57,11 @@
      (gimp-edit-fill outline-layer BACKGROUND-FILL)
 
      (gimp-image-merge-visible-layers img 1)
-     (gimp-layer-unhide-all img))
-    (gimp-displays-flush)))
+     (gimp-layer-unhide-all img)
+	 (gimp-selection-none img)
+	 
+     (gimp-image-undo-group-end img)
+	 (gimp-displays-flush)))
 
 ;; Debug
 ;;(script-fu-meme-generator (gimp-image-latest) "Test" 500)
